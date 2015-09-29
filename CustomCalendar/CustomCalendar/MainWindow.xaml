@@ -1,0 +1,42 @@
+﻿<Window 
+    x:Class="CalendarJournal.MainWindow"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="clr-namespace:CustomCalendar"
+    xmlns:calendarJournal="clr-namespace:CalendarJournal"
+    Title="Tagebuch" 
+    Width="500"
+    Height="600" ResizeMode="CanResizeWithGrip" Icon="glyphicons-46-calendar.png"
+    >
+    
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition MinHeight="400"></RowDefinition>
+            <RowDefinition></RowDefinition>
+            <RowDefinition Height="Auto"></RowDefinition>
+
+        </Grid.RowDefinitions>
+        <calendarJournal:MonthViewCalendar x:Name="Calendar"  EntriesMade="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type calendarJournal:MainWindow}}, Path=EntriesMade}"/>
+        <calendarJournal:DateRichTextBox Grid.Row="1" x:Name="DateEntryTextBox"
+                               RootPath="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type calendarJournal:MainWindow}}, Path=RootPath}"
+                               Date="{Binding SelectedDate, ElementName=Calendar, UpdateSourceTrigger=PropertyChanged}" VerticalScrollBarVisibility="Visible"/>
+
+        <StackPanel Grid.Row="2" HorizontalAlignment="Left" VerticalAlignment="Bottom" Orientation="Horizontal">
+            <Button Margin="2" Click="Button_Click" >
+                <Image Height="15" Width="15"  Source="glyphicons-440-wrench.png"></Image>
+            </Button>
+            <Button Margin="2" Command="{Binding SaveCommand}">
+                <Image Height="15"  Width="15" Source="glyphicons-207-ok-2.png"></Image>
+            </Button>
+            <Button Margin="2" Command="{Binding UndoCommand}">
+                <Image Height="15"  Width="15" Source="glyphicons-436-undo.png"></Image>
+            </Button>
+            <Button Margin="2" Command="{Binding DeleteCommand}">
+                <Image Height="15" Width="15" Source="glyphicons-208-remove-2.png"></Image></Button>
+        </StackPanel>
+
+        <StackPanel Grid.Row="2" Margin="0,0,20,0" HorizontalAlignment="Right" VerticalAlignment="Bottom" Orientation="Horizontal">
+            <TextBlock Margin="2" HorizontalAlignment="Right" >  <Hyperlink Command="{Binding OpenHyperlinkCommand}">http://www.joesgoals.com</Hyperlink></TextBlock>
+        </StackPanel>
+    </Grid>
+</Window>
