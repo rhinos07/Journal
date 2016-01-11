@@ -138,6 +138,7 @@ namespace CalendarJournal
 
             myFlowDoc.Blocks.Add(new Paragraph(new Run(GetCaption(newValue.DayOfWeek))));
             myFlowDoc.Blocks.Add(new Paragraph(new Run("5 Werte")));
+            myFlowDoc.Blocks.Add(new Paragraph(new Run(GetTraining(newValue.DayOfWeek))));
 
             return myFlowDoc;
         }
@@ -168,6 +169,40 @@ namespace CalendarJournal
 
 
             return caption;
+        }
+
+        private string GetTraining(DayOfWeek dayOfWeek)
+        {
+            string training = "";
+            switch (dayOfWeek)
+            {
+                case DayOfWeek.Monday:
+                    training = "";
+                    break;
+                case DayOfWeek.Tuesday:
+                    training = "Brücken";
+                    break;
+                case DayOfWeek.Wednesday:
+                    training = "Handstand";
+                    break;
+                case DayOfWeek.Thursday:
+                    training = "Beinheben";
+                    break;
+                case DayOfWeek.Friday:
+                    training = "Kniebeugen";
+                    break;
+                case DayOfWeek.Saturday:
+                    training = "Liegestütze";
+                    break;
+                case DayOfWeek.Sunday:
+                    training = "Klimmzüge";
+                    break;
+
+
+            }
+
+
+            return training;
         }
 
         private string DocumentToString(FlowDocument doc)
