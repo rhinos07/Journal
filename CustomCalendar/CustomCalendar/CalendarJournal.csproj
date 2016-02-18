@@ -52,6 +52,9 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>1455824673_calendar.ico</ApplicationIcon>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="Ookii.Dialogs.Wpf">
       <HintPath>.\Ookii.Dialogs.Wpf.dll</HintPath>
@@ -175,6 +178,9 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="glyphicons-46-calendar.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="1455824673_calendar.ico" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

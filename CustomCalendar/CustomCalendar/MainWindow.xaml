@@ -6,7 +6,7 @@
     xmlns:calendarJournal="clr-namespace:CalendarJournal"
     Title="Tagebuch" 
     Width="500"
-    Height="600" ResizeMode="CanResizeWithGrip" Icon="glyphicons-46-calendar.png"
+    Height="600" ResizeMode="CanResizeWithGrip" Icon="1455824673_calendar.ico"
     >
     
     <Grid>
