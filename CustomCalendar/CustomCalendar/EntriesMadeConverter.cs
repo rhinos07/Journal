@@ -7,7 +7,7 @@ using System.Windows.Data;
 namespace CalendarJournal
 {
 
-    [ValueConversion(typeof(ObservableCollection<DateTime>), typeof(ObservableCollection<DateTime>))]
+    [ValueConversion(typeof(ObservableCollection<Entry>), typeof(ObservableCollection<Entry>))]
     public class EntriesMadeConverter : IMultiValueConverter
     {
 
@@ -15,17 +15,20 @@ namespace CalendarJournal
         {
             var date = (DateTime)values[1];
 
-            if ((ObservableCollection<DateTime>) values[0] == null)
+            if ((ObservableCollection<Entry>)values[0] == null)
             {
-                return new ObservableCollection<DateTime>();
+                return new ObservableCollection<Entry>();
             }
 
-            if (((ObservableCollection<DateTime>)values[0]).Any(entryExistsAt => entryExistsAt.Date == date.Date))
+            var entry = ((ObservableCollection<Entry>) values[0]).FirstOrDefault(entryExistsAt =>
+                entryExistsAt.DateTime.Date == date.Date);
+
+            if (entry != null)
             {
-                return new ObservableCollection<DateTime>{date.Date};
+                return new ObservableCollection<Entry> { entry };
             }
 
-            return new ObservableCollection<DateTime>();
+            return new ObservableCollection<Entry>();
         }
 
         public object[] ConvertBack(object value, Type[] targetTypes, object parameter, CultureInfo culture)

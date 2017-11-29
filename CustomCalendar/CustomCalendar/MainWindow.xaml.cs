@@ -25,13 +25,13 @@ namespace CalendarJournal
                 DependencyProperty.Register
             (
                 "EntriesMade",
-                typeof(ObservableCollection<DateTime>),
+                typeof(ObservableCollection<Entry>),
                 typeof(MainWindow)
             );
 
-        public ObservableCollection<DateTime> EntriesMade
+        public ObservableCollection<Entry> EntriesMade
         {
-            get { return (ObservableCollection<DateTime>)GetValue(EntriesMadeProperty); }
+            get { return (ObservableCollection<Entry>)GetValue(EntriesMadeProperty); }
             set { SetValue(EntriesMadeProperty, value); }
         }
 
@@ -119,7 +119,7 @@ namespace CalendarJournal
 
         private void UpdateEntriesMade()
         {
-            var list = new ObservableCollection<DateTime>();
+            var list = new ObservableCollection<Entry>();
 
             if (!string.IsNullOrEmpty(RootPath))
             {
@@ -132,13 +132,67 @@ namespace CalendarJournal
                         DateTime date;
                         if (DateTime.TryParseExact(filenameparts[0], "yyyy-MM-dd", CultureInfo.CurrentCulture, DateTimeStyles.None, out date))
                         {
-                            list.Add(date);
+                            var entry = new Entry {DateTime = date};
+
+                            entry.Text = ParseContents(file);
+
+                            list.Add(entry);
                         }
                     }
                 }
             }
 
             SetValue(EntriesMadeProperty, list);
+        }
+
+        private string ParseContents(string file)
+        {
+            var text = "";
+            var contents = File.ReadAllText(file);
+
+            if (contents.Contains("Schwimmen"))
+                text = text + "Schw ";
+
+            if (contents.Contains("Liegestütz"))
+                text = text + "Li ";
+
+            if (contents.Contains("Kniebeuge"))
+                text = text + "Kb ";
+
+            if (contents.Contains("Pistol"))
+                text = text + "Pi ";
+
+            if (contents.Contains("Bauch"))
+                text = text + "B ";
+
+            if (contents.Contains("Beinheben"))
+                text = text + "B ";
+
+            if (contents.Contains("Rücken"))
+                text = text + "R ";
+
+            if (contents.Contains("Klimmzug"))
+                text = text + "Kz ";
+
+            if (contents.Contains("Dip"))
+                text = text + "Di ";
+            
+            if (contents.Contains("Handstand"))
+                text = text + "Hs ";
+
+            if (contents.Contains("Trifecta"))
+                text = text + "Tri ";
+
+            if (contents.Contains("trifecta"))
+                text = text + "Tri ";
+
+            if (contents.Contains("oggen"))
+                text = text + "Jo ";
+
+            if (contents.Contains("ahrradfahren"))
+                text = text + "Ff ";
+            
+            return text;
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)

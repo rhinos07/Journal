@@ -464,7 +464,7 @@
                             <ListBox.ItemTemplate>
                                 <DataTemplate>
                                     <Border Background="#FFDFFFF5" BorderThickness="1" CornerRadius="4" BorderBrush="#ff006000">
-                                        <TextBlock HorizontalAlignment="Center" Text="X"/>
+                                        <TextBlock HorizontalAlignment="Center" Text="{Binding Path=Text}"/>
                                     </Border>
                                 </DataTemplate>
                             </ListBox.ItemTemplate>

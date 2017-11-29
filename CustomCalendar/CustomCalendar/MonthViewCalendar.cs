@@ -32,7 +32,7 @@ namespace CalendarJournal
             DependencyProperty.Register
             (
                 "EntriesMade",
-                typeof(ObservableCollection<DateTime>),
+                typeof(ObservableCollection<Entry>),
                 typeof(Calendar)
             );
 
@@ -47,9 +47,9 @@ namespace CalendarJournal
         }
 
 
-        public ObservableCollection<DateTime> EntriesMade
+        public ObservableCollection<Entry> EntriesMade
         {
-            get { return (ObservableCollection<DateTime>)GetValue(EntriesMadeProperty); }
+            get { return (ObservableCollection<Entry>)GetValue(EntriesMadeProperty); }
             set { SetValue(EntriesMadeProperty, value); }
         }
 
@@ -88,5 +88,13 @@ namespace CalendarJournal
             //    appointmentWindow.Show();
             //}
         }
+    }
+
+
+    public class Entry
+    {
+        public DateTime DateTime { get; set; }
+
+        public string Text { get; set; }
     }
 }
