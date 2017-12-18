@@ -148,40 +148,64 @@ namespace CalendarJournal
         private string ParseContents(string file)
         {
             var text = "";
-            var contents = File.ReadAllText(file);
+            var contents = File.ReadAllText(file).ToLower();
 
-            if (contents.Contains("Schwimmen"))
+            if (contents.Contains("kniebeuge"))
+                text = text + "SQ ";
+
+            if (contents.Contains("squat"))
+                text = text + "SQ ";
+
+            if (contents.Contains("kreuzheben"))
+                text = text + "DL ";
+
+            if (contents.Contains("deadlift"))
+                text = text + "DL ";
+
+            if (contents.Contains("bankdrücke"))
+                text = text + "BP ";
+
+            if (contents.Contains("bench press"))
+                text = text + "BP ";
+            else if (contents.Contains("press "))
+                text = text + "OHP ";
+
+
+            if (contents.Contains("overhead press"))
+                text = text + "OHP ";
+
+            if (contents.Contains("overhead press"))
+                text = text + "OHP ";
+
+            if (contents.Contains("power clean"))
+                text = text + "PC ";
+
+            if (contents.Contains("pistol"))
+                text = text + "Pi ";
+            
+            if (contents.Contains("schwimmen"))
                 text = text + "Schw ";
 
-            if (contents.Contains("Liegestütz"))
+            if (contents.Contains("liegestütz"))
                 text = text + "Li ";
 
-            if (contents.Contains("Kniebeuge"))
-                text = text + "Kb ";
-
-            if (contents.Contains("Pistol"))
-                text = text + "Pi ";
-
-            if (contents.Contains("Bauch"))
+            if (contents.Contains("bauch"))
                 text = text + "B ";
 
-            if (contents.Contains("Beinheben"))
+            if (contents.Contains("beinheben"))
                 text = text + "B ";
 
-            if (contents.Contains("Rücken"))
+            if (contents.Contains("rücken"))
                 text = text + "R ";
 
-            if (contents.Contains("Klimmzug"))
+            if (contents.Contains("klimmzug"))
                 text = text + "Kz ";
 
-            if (contents.Contains("Dip"))
+            if (contents.Contains("dip"))
                 text = text + "Di ";
             
-            if (contents.Contains("Handstand"))
+            if (contents.Contains("handstand"))
                 text = text + "Hs ";
-
-            if (contents.Contains("Trifecta"))
-                text = text + "Tri ";
 
             if (contents.Contains("trifecta"))
                 text = text + "Tri ";
