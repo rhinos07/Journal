@@ -4,6 +4,8 @@
  
     xmlns:calendarJournal="clr-namespace:CalendarJournal">
 
+    <Color x:Key="SelectedBackgroundColor">#FFC5CBF9</Color>
+    <Color x:Key="ControlMediumColor">#FF7381F9</Color>
 
     <!--CalendarItem-->
     <Style x:Key="CalendarItemStyle" TargetType="CalendarItem">
@@ -29,6 +31,22 @@
                                         Text="{Binding Converter={StaticResource DayNameConverter}}"
                                         Margin="0,6,0,6"
                                         VerticalAlignment="Center"/>
+                            </Grid>
+                        </DataTemplate>
+                        <DataTemplate x:Key="{x:Static CalendarItem.DayTitleTemplateResourceKey}">
+                            
+                            <Grid>
+                                <Rectangle 
+                                    Margin="-1" 
+                                    Fill="#e4eaf5"
+                                /><TextBlock Foreground="#FF333333"
+                                             FontWeight="Bold"
+                                             FontSize="9.5"
+                                             FontFamily="Verdana"
+                                             Margin="0,6,0,6"
+                                             Text="{Binding}"
+                                             HorizontalAlignment="Center"
+                                             VerticalAlignment="Center" />
                             </Grid>
                         </DataTemplate>
 
@@ -186,7 +204,7 @@
                                         <!-- End: Header button template -->
                                     </Grid.Resources>
 
-                                    <Rectangle Fill="#FFE3EFFF" Grid.ColumnSpan="4"/>
+                                    <Rectangle Fill="#dfe3ed" Grid.ColumnSpan="4"/>
 
                                     <!-- Start: Previous button content -->
                                     <Button x:Name="PART_PreviousButton" 
@@ -397,7 +415,7 @@
                                 <VisualState x:Name="Today">
                                     <Storyboard>
                                         <ColorAnimation Duration="0" Storyboard.TargetName="StartGradient" Storyboard.TargetProperty="Color" To="#FFF7D275"></ColorAnimation>
-                                        <ColorAnimation Duration="0" Storyboard.TargetName="EndGradient" Storyboard.TargetProperty="Color" To="#FFF3B84B"></ColorAnimation>
+                                        <ColorAnimation Duration="0" Storyboard.TargetName="EndGradient" Storyboard.TargetProperty="Color" To="#FFF7D275"></ColorAnimation>
                                         <ColorAnimation Duration="0" Storyboard.TargetName="BorderBrush" Storyboard.TargetProperty="Color" To="#FFF3B84B"></ColorAnimation>
                                         <DoubleAnimation Duration="0" Storyboard.TargetName="Border" Storyboard.TargetProperty="StrokeThickness" To="2"></DoubleAnimation>
                                     </Storyboard>
@@ -417,16 +435,17 @@
                         </VisualStateManager.VisualStateGroups>
                         <Rectangle x:Name="SelectedBackground" Grid.Row="1" RadiusX="1" RadiusY="1" Opacity="0" Fill="{TemplateBinding Background}"/>
                         <Rectangle x:Name="Background" Grid.Row="1" RadiusX="1" RadiusY="1" Opacity="0" Fill="{TemplateBinding Background}" />
-                        <Rectangle x:Name="InactiveBackground" Grid.Row="1" RadiusX="1" RadiusY="1" Opacity="0" Fill="#FFA5BFE1"/>
+                        <Rectangle x:Name="InactiveBackground" Grid.Row="1" RadiusX="1" RadiusY="1" Opacity="0" Fill="#e9edf5"/>
                         <Border>
                             <Border.Background>
                                 <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
                                     <GradientStop x:Name="StartGradient" Color="#FFDFE8F5" Offset="0"/>
                                     <GradientStop Color="{Binding ElementName=StartGradient, Path=Color}" Offset="0.5"/>
-                                    <GradientStop x:Name="EndGradient" Color="#FFC9D9ED" Offset="0.5"/>
+                                    <GradientStop x:Name="EndGradient" Color="#FFDFE8F5" Offset="0.5"/>
                                     <GradientStop Color="{Binding ElementName=EndGradient, Path=Color}" Offset="1"/>
                                 </LinearGradientBrush>
                             </Border.Background>
+
                             <ContentPresenter
                                 x:Name="NormalText"
                                 VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
@@ -514,7 +533,7 @@
   <Setter Property="MinHeight"
           Value="42" />
   <Setter Property="FontSize"
-          Value="10" />
+          Value="12" />
   <Setter Property="HorizontalContentAlignment"
           Value="Center" />
   <Setter Property="VerticalContentAlignment"

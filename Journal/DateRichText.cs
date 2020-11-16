@@ -12,7 +12,7 @@ namespace CalendarJournal
     public class DateRichTextBox :  RichTextBox
     {
 
-        public static readonly DependencyProperty DateProperty = DependencyProperty.Register("Date", typeof(DateTime), 
+        public static readonly DependencyProperty DateProperty = DependencyProperty.Register("Date", typeof(DateTime?), 
             typeof(DateRichTextBox), new FrameworkPropertyMetadata(DateTime.MinValue, OnCurrentTimePropertyChanged));
 
         public DateTime Date { get; set; }
@@ -23,8 +23,11 @@ namespace CalendarJournal
 
             if (control != null)
             {
-                control.Date = (DateTime)e.NewValue;
-                control.LoadDate((DateTime) e.NewValue);
+                if (e.NewValue != null)
+                {
+                    control.Date = (DateTime) e.NewValue;
+                    control.LoadDate((DateTime) e.NewValue);
+                }
             }
         }
 
