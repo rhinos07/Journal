@@ -166,16 +166,12 @@ namespace CalendarJournal
             if (contents.Contains("deadlift"))
                 text = text + "DL ";
 
-            if (contents.Contains("bankdrücke"))
+            if (contents.Contains("bankdrücken"))
                 text = text + "BP ";
 
             if (contents.Contains("bench press"))
                 text = text + "BP ";
             else if (contents.Contains("press "))
-                text = text + "OHP ";
-
-
-            if (contents.Contains("overhead press"))
                 text = text + "OHP ";
 
             if (contents.Contains("overhead press"))
@@ -199,7 +195,7 @@ namespace CalendarJournal
             if (contents.Contains("beinheben"))
                 text = text + "B ";
 
-            if (contents.Contains("rücken"))
+            if (contents.Contains("rücken") && !contents.Contains("drücken"))
                 text = text + "R ";
 
             if (contents.Contains("klimmzug"))
@@ -214,10 +210,13 @@ namespace CalendarJournal
             if (contents.Contains("trifecta"))
                 text = text + "Tri ";
 
-            if (contents.Contains("oggen"))
+            if (contents.Contains("joggen"))
                 text = text + "Jo ";
 
-            if (contents.Contains("ahrradfahren"))
+            if (contents.Contains("fahrradfahren"))
+                text = text + "Ff ";
+
+            if (contents.Contains("mtb"))
                 text = text + "Ff ";
             
             return text;
