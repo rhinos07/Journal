@@ -1,19 +1,15 @@
 <ResourceDictionary
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    xmlns:local="clr-namespace:CustomCalendar"
-    xmlns:toolkit="http://schemas.microsoft.com/wpf/2008/toolkit"
-    xmlns:primitives="clr-namespace:Microsoft.Windows.Controls.Primitives;assembly=WPFToolkit"
-    xmlns:vsm="clr-namespace:System.Windows;assembly=WPFToolkit"
     xmlns:globalization="clr-namespace:System.Globalization;assembly=mscorlib"
     xmlns:calendarJournal="clr-namespace:CalendarJournal">
 
 
     <!--CalendarItem-->
-    <Style x:Key="CalendarItemStyle" TargetType="primitives:CalendarItem">
+    <Style x:Key="CalendarItemStyle" TargetType="CalendarItem">
         <Setter Property="Template">
             <Setter.Value>
-                <ControlTemplate TargetType="primitives:CalendarItem">
+                <ControlTemplate TargetType="CalendarItem">
                     <ControlTemplate.Resources>
                         <calendarJournal:DayNameConverter x:Key="DayNameConverter"/>
 
@@ -42,16 +38,16 @@
                         <Grid.Resources>
                             <SolidColorBrush x:Key="DisabledColor" Color="#A5FFFFFF" />
                         </Grid.Resources>
-                        <vsm:VisualStateManager.VisualStateGroups>
-                            <vsm:VisualStateGroup x:Name="CommonStates">
-                                <vsm:VisualState x:Name="Normal" />
-                                <vsm:VisualState x:Name="Disabled">
+                        <VisualStateManager.VisualStateGroups>
+                            <VisualStateGroup x:Name="CommonStates">
+                                <VisualState x:Name="Normal" />
+                                <VisualState x:Name="Disabled">
                                     <Storyboard>
                                         <DoubleAnimation Storyboard.TargetName="PART_DisabledVisual" Storyboard.TargetProperty="Opacity" To="1" Duration="0" />
                                     </Storyboard>
-                                </vsm:VisualState>
-                            </vsm:VisualStateGroup>
-                        </vsm:VisualStateManager.VisualStateGroups>
+                                </VisualState>
+                            </VisualStateGroup>
+                        </VisualStateManager.VisualStateGroups>
 
                         <Border 
                                 BorderBrush="{TemplateBinding BorderBrush}" 
@@ -92,21 +88,21 @@
                                         <!-- Start: Previous button template -->
                                         <ControlTemplate x:Key="PreviousButtonTemplate" TargetType="Button">
                                             <Grid Cursor="Hand">
-                                                <vsm:VisualStateManager.VisualStateGroups>
-                                                    <vsm:VisualStateGroup x:Name="CommonStates">
-                                                        <vsm:VisualState x:Name="Normal" />
-                                                        <vsm:VisualState x:Name="MouseOver">
+                                                <VisualStateManager.VisualStateGroups>
+                                                    <VisualStateGroup x:Name="CommonStates">
+                                                        <VisualState x:Name="Normal" />
+                                                        <VisualState x:Name="MouseOver">
                                                             <Storyboard>
                                                                 <ColorAnimation Storyboard.TargetName="TextColor" Storyboard.TargetProperty="Color" To="#FF73A9D8" Duration="0" />
                                                             </Storyboard>
-                                                        </vsm:VisualState>
-                                                        <vsm:VisualState x:Name="Disabled">
+                                                        </VisualState>
+                                                        <VisualState x:Name="Disabled">
                                                             <Storyboard>
                                                                 <DoubleAnimation Storyboard.TargetName="TextColor" Storyboard.TargetProperty="Opacity" To=".5" Duration="0" />
                                                             </Storyboard>
-                                                        </vsm:VisualState>
-                                                    </vsm:VisualStateGroup>
-                                                </vsm:VisualStateManager.VisualStateGroups>
+                                                        </VisualState>
+                                                    </VisualStateGroup>
+                                                </VisualStateManager.VisualStateGroups>
                                                 <Rectangle Fill="#11E5EBF1" Stretch="Fill" Opacity="1"/>
                                                 <Grid>
                                                     <Ellipse Style="{StaticResource NavigationEllipseStyle}"/>
@@ -125,21 +121,21 @@
                                         <!-- Start: Next button template -->
                                         <ControlTemplate x:Key="NextButtonTemplate" TargetType="Button">
                                             <Grid Cursor="Hand">
-                                                <vsm:VisualStateManager.VisualStateGroups>
-                                                    <vsm:VisualStateGroup x:Name="CommonStates">
-                                                        <vsm:VisualState x:Name="Normal" />
-                                                        <vsm:VisualState x:Name="MouseOver">
+                                                <VisualStateManager.VisualStateGroups>
+                                                    <VisualStateGroup x:Name="CommonStates">
+                                                        <VisualState x:Name="Normal" />
+                                                        <VisualState x:Name="MouseOver">
                                                             <Storyboard>
                                                                 <ColorAnimation Storyboard.TargetName="TextColor" Storyboard.TargetProperty="Color" To="#FF73A9D8" Duration="0" />
                                                             </Storyboard>
-                                                        </vsm:VisualState>
-                                                        <vsm:VisualState x:Name="Disabled">
+                                                        </VisualState>
+                                                        <VisualState x:Name="Disabled">
                                                             <Storyboard>
                                                                 <DoubleAnimation Storyboard.TargetName="TextColor" Storyboard.TargetProperty="Opacity" To=".5" Duration="0" />
                                                             </Storyboard>
-                                                        </vsm:VisualState>
-                                                    </vsm:VisualStateGroup>
-                                                </vsm:VisualStateManager.VisualStateGroups>
+                                                        </VisualState>
+                                                    </VisualStateGroup>
+                                                </VisualStateManager.VisualStateGroups>
                                                 <Rectangle Fill="#11E5EBF1" Stretch="Fill" Opacity="1"/>
                                                 <Grid>
                                                     <Ellipse Style="{StaticResource NavigationEllipseStyle}"/>
@@ -158,21 +154,21 @@
                                         <!-- Start: Header button template -->
                                         <ControlTemplate x:Key="HeaderButtonTemplate" TargetType="Button">
                                             <Grid Cursor="Hand">
-                                                <vsm:VisualStateManager.VisualStateGroups>
-                                                    <vsm:VisualStateGroup x:Name="CommonStates">
-                                                        <vsm:VisualState x:Name="Normal" />
-                                                        <vsm:VisualState x:Name="MouseOver">
+                                                <VisualStateManager.VisualStateGroups>
+                                                    <VisualStateGroup x:Name="CommonStates">
+                                                        <VisualState x:Name="Normal" />
+                                                        <VisualState x:Name="MouseOver">
                                                             <Storyboard>
                                                                 <ColorAnimation Storyboard.TargetName="TextColor" Storyboard.TargetProperty="Color" To="#FF73A9D8" Duration="0" />
                                                             </Storyboard>
-                                                        </vsm:VisualState>
-                                                        <vsm:VisualState x:Name="Disabled">
+                                                        </VisualState>
+                                                        <VisualState x:Name="Disabled">
                                                             <Storyboard>
                                                                 <DoubleAnimation Storyboard.TargetName="buttonContent" Storyboard.TargetProperty="Opacity" To=".5" Duration="0" />
                                                             </Storyboard>
-                                                        </vsm:VisualState>
-                                                    </vsm:VisualStateGroup>
-                                                </vsm:VisualStateManager.VisualStateGroups>
+                                                        </VisualState>
+                                                    </VisualStateGroup>
+                                                </VisualStateManager.VisualStateGroups>
                                                 <ContentPresenter
                                                         x:Name="buttonContent"
                                                         Content="{TemplateBinding Content}"
@@ -300,7 +296,7 @@
     </Style>
 
     <!--CalendarDayButton-->
-    <Style x:Key="CalendarDayButtonStyle" TargetType="primitives:CalendarDayButton">
+    <Style x:Key="CalendarDayButtonStyle" TargetType="CalendarDayButton">
         <Setter Property="Background" Value="#FFBADDE9"/>
         <Setter Property="MinWidth" Value="5"/>
         <Setter Property="MinHeight" Value="5"/>
@@ -309,7 +305,7 @@
         <Setter Property="VerticalContentAlignment" Value="Center"/>
         <Setter Property="Template">
             <Setter.Value>
-                <ControlTemplate TargetType="primitives:CalendarDayButton">
+                <ControlTemplate TargetType="CalendarDayButton">
                     <ControlTemplate.Resources>
                         <calendarJournal:AppointmentsConverter x:Key="AppointmentsConverter"/>
                         <calendarJournal:EntriesMadeConverter x:Key="EntriesMadeConverter"/>
@@ -320,45 +316,45 @@
                             <RowDefinition Height="*"/>
                             <RowDefinition Height="*"/>
                         </Grid.RowDefinitions>
-                        <vsm:VisualStateManager.VisualStateGroups>
-                            <vsm:VisualStateGroup x:Name="CommonStates">
-                                <vsm:VisualStateGroup.Transitions>
-                                    <vsm:VisualTransition GeneratedDuration="0:0:0.1" />
-                                </vsm:VisualStateGroup.Transitions>
-                                <vsm:VisualState x:Name="Normal" />
-                                <vsm:VisualState x:Name="MouseOver">
+                        <VisualStateManager.VisualStateGroups>
+                            <VisualStateGroup x:Name="CommonStates">
+                                <VisualStateGroup.Transitions>
+                                    <VisualTransition GeneratedDuration="0:0:0.1" />
+                                </VisualStateGroup.Transitions>
+                                <VisualState x:Name="Normal" />
+                                <VisualState x:Name="MouseOver">
                                     <Storyboard>
                                         <DoubleAnimation Storyboard.TargetName="Background" Storyboard.TargetProperty="Opacity" To=".5" Duration="0" />
                                     </Storyboard>
-                                </vsm:VisualState>
-                                <vsm:VisualState x:Name="Pressed">
+                                </VisualState>
+                                <VisualState x:Name="Pressed">
                                     <Storyboard>
                                         <DoubleAnimation Storyboard.TargetName="Background" Storyboard.TargetProperty="Opacity" To=".5" Duration="0" />
                                     </Storyboard>
-                                </vsm:VisualState>
-                                <vsm:VisualState x:Name="Disabled">
+                                </VisualState>
+                                <VisualState x:Name="Disabled">
                                     <Storyboard>
                                         <DoubleAnimation Storyboard.TargetName="Background" Storyboard.TargetProperty="Opacity" To="0" Duration="0" />
                                         <DoubleAnimation Storyboard.TargetName="NormalText" Storyboard.TargetProperty="Opacity" To=".35" Duration="0" />
                                     </Storyboard>
-                                </vsm:VisualState>
-                            </vsm:VisualStateGroup>
-                            <vsm:VisualStateGroup x:Name="SelectionStates">
-                                <vsm:VisualStateGroup.Transitions>
-                                    <vsm:VisualTransition GeneratedDuration="0" />
-                                </vsm:VisualStateGroup.Transitions>
-                                <vsm:VisualState x:Name="Unselected" />
-                                <vsm:VisualState x:Name="Selected">
+                                </VisualState>
+                            </VisualStateGroup>
+                            <VisualStateGroup x:Name="SelectionStates">
+                                <VisualStateGroup.Transitions>
+                                    <VisualTransition GeneratedDuration="0" />
+                                </VisualStateGroup.Transitions>
+                                <VisualState x:Name="Unselected" />
+                                <VisualState x:Name="Selected">
                                     <Storyboard>
                                         <DoubleAnimation Storyboard.TargetName="SelectedBackground" Storyboard.TargetProperty="Opacity" To="1" Duration="0" />
                                     </Storyboard>
-                                </vsm:VisualState>
-                            </vsm:VisualStateGroup>
-                            <vsm:VisualStateGroup x:Name="CalendarButtonFocusStates">
-                                <vsm:VisualStateGroup.Transitions>
-                                    <vsm:VisualTransition GeneratedDuration="0" />
-                                </vsm:VisualStateGroup.Transitions>
-                                <vsm:VisualState x:Name="CalendarButtonFocused">
+                                </VisualState>
+                            </VisualStateGroup>
+                            <VisualStateGroup x:Name="CalendarButtonFocusStates">
+                                <VisualStateGroup.Transitions>
+                                    <VisualTransition GeneratedDuration="0" />
+                                </VisualStateGroup.Transitions>
+                                <VisualState x:Name="CalendarButtonFocused">
                                     <Storyboard>
                                         <ObjectAnimationUsingKeyFrames Storyboard.TargetName="DayButtonFocusVisual" Storyboard.TargetProperty="Visibility" Duration="0">
                                             <DiscreteObjectKeyFrame KeyTime="0">
@@ -368,8 +364,8 @@
                                             </DiscreteObjectKeyFrame>
                                         </ObjectAnimationUsingKeyFrames>
                                     </Storyboard>
-                                </vsm:VisualState>
-                                <vsm:VisualState x:Name="CalendarButtonUnfocused">
+                                </VisualState>
+                                <VisualState x:Name="CalendarButtonUnfocused">
                                     <Storyboard>
                                         <ObjectAnimationUsingKeyFrames Storyboard.TargetName="DayButtonFocusVisual" Storyboard.TargetProperty="Visibility" Duration="0">
                                             <DiscreteObjectKeyFrame KeyTime="0">
@@ -379,46 +375,46 @@
                                             </DiscreteObjectKeyFrame>
                                         </ObjectAnimationUsingKeyFrames>
                                     </Storyboard>
-                                </vsm:VisualState>
-                            </vsm:VisualStateGroup>
-                            <vsm:VisualStateGroup x:Name="ActiveStates">
-                                <vsm:VisualStateGroup.Transitions>
-                                    <vsm:VisualTransition GeneratedDuration="0" />
-                                </vsm:VisualStateGroup.Transitions>
-                                <vsm:VisualState x:Name="Active" />
-                                <vsm:VisualState x:Name="Inactive">
+                                </VisualState>
+                            </VisualStateGroup>
+                            <VisualStateGroup x:Name="ActiveStates">
+                                <VisualStateGroup.Transitions>
+                                    <VisualTransition GeneratedDuration="0" />
+                                </VisualStateGroup.Transitions>
+                                <VisualState x:Name="Active" />
+                                <VisualState x:Name="Inactive">
                                     <Storyboard>
                                         <ColorAnimation Duration="0" Storyboard.TargetName="selectedText" Storyboard.TargetProperty="Color" To="#FF777777"></ColorAnimation>
                                         <DoubleAnimation Duration="0" Storyboard.TargetName="InactiveBackground" Storyboard.TargetProperty="Opacity" To="1"></DoubleAnimation>
                                     </Storyboard>
-                                </vsm:VisualState>
-                            </vsm:VisualStateGroup>
-                            <vsm:VisualStateGroup x:Name="DayStates">
-                                <vsm:VisualStateGroup.Transitions>
-                                    <vsm:VisualTransition GeneratedDuration="0" />
-                                </vsm:VisualStateGroup.Transitions>
-                                <vsm:VisualState x:Name="RegularDay" />
-                                <vsm:VisualState x:Name="Today">
+                                </VisualState>
+                            </VisualStateGroup>
+                            <VisualStateGroup x:Name="DayStates">
+                                <VisualStateGroup.Transitions>
+                                    <VisualTransition GeneratedDuration="0" />
+                                </VisualStateGroup.Transitions>
+                                <VisualState x:Name="RegularDay" />
+                                <VisualState x:Name="Today">
                                     <Storyboard>
                                         <ColorAnimation Duration="0" Storyboard.TargetName="StartGradient" Storyboard.TargetProperty="Color" To="#FFF7D275"></ColorAnimation>
                                         <ColorAnimation Duration="0" Storyboard.TargetName="EndGradient" Storyboard.TargetProperty="Color" To="#FFF3B84B"></ColorAnimation>
                                         <ColorAnimation Duration="0" Storyboard.TargetName="BorderBrush" Storyboard.TargetProperty="Color" To="#FFF3B84B"></ColorAnimation>
                                         <DoubleAnimation Duration="0" Storyboard.TargetName="Border" Storyboard.TargetProperty="StrokeThickness" To="2"></DoubleAnimation>
                                     </Storyboard>
-                                </vsm:VisualState>
-                            </vsm:VisualStateGroup>
-                            <vsm:VisualStateGroup x:Name="BlackoutDayStates">
-                                <vsm:VisualStateGroup.Transitions>
-                                    <vsm:VisualTransition GeneratedDuration="0" />
-                                </vsm:VisualStateGroup.Transitions>
-                                <vsm:VisualState x:Name="NormalDay" />
-                                <vsm:VisualState x:Name="BlackoutDay">
+                                </VisualState>
+                            </VisualStateGroup>
+                            <VisualStateGroup x:Name="BlackoutDayStates">
+                                <VisualStateGroup.Transitions>
+                                    <VisualTransition GeneratedDuration="0" />
+                                </VisualStateGroup.Transitions>
+                                <VisualState x:Name="NormalDay" />
+                                <VisualState x:Name="BlackoutDay">
                                     <Storyboard>
                                         <DoubleAnimation Duration="0" Storyboard.TargetName="Blackout" Storyboard.TargetProperty="Opacity" To=".2"/>
                                     </Storyboard>
-                                </vsm:VisualState>
-                            </vsm:VisualStateGroup>
-                        </vsm:VisualStateManager.VisualStateGroups>
+                                </VisualState>
+                            </VisualStateGroup>
+                        </VisualStateManager.VisualStateGroups>
                         <Rectangle x:Name="SelectedBackground" Grid.Row="1" RadiusX="1" RadiusY="1" Opacity="0" Fill="{TemplateBinding Background}"/>
                         <Rectangle x:Name="Background" Grid.Row="1" RadiusX="1" RadiusY="1" Opacity="0" Fill="{TemplateBinding Background}" />
                         <Rectangle x:Name="InactiveBackground" Grid.Row="1" RadiusX="1" RadiusY="1" Opacity="0" Fill="#FFA5BFE1"/>
@@ -535,9 +531,9 @@
         <Setter Property="BorderThickness" Value="1"></Setter>
         <Setter Property="Template">
             <Setter.Value>
-                <ControlTemplate TargetType="toolkit:Calendar">
+                <ControlTemplate TargetType="Calendar">
                     <Grid Name="PART_Root">
-                        <primitives:CalendarItem 
+                        <CalendarItem 
                                 Name="PART_CalendarItem" 
                                 Style="{TemplateBinding CalendarItemStyle}"
                                 BorderBrush="{TemplateBinding BorderBrush}" 

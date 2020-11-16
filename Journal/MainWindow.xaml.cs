@@ -8,6 +8,7 @@ using System.Windows.Input;
 using System.Windows.Threading;
 using Ookii.Dialogs.Wpf;
 
+
 namespace CalendarJournal
 {
     /// <summary>
@@ -77,12 +78,14 @@ namespace CalendarJournal
 
         private void SelectRootDir()
         {
+            
             var dialog = new VistaFolderBrowserDialog
             {
                 Description = "Please select a folder.",
                 UseDescriptionForTitle = true
             };
             if (!VistaFolderBrowserDialog.IsVistaFolderDialogSupported)
+                
                 MessageBox.Show("Because you are not using Windows Vista or later, the regular folder browser dialog will be used. Please use Windows Vista to see the new dialog.", "Sample folder browser dialog");
             var showDialog = dialog.ShowDialog();
             if (showDialog != null && (bool)showDialog)
@@ -92,6 +95,7 @@ namespace CalendarJournal
             }
 
             RegisterNewPath();
+            
         }
 
         private void RegisterNewPath()

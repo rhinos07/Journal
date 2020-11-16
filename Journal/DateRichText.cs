@@ -5,6 +5,8 @@ using System.Windows.Controls;
 using System.Windows.Documents;
 using Ookii.Dialogs.Wpf;
 
+//using Ookii.Dialogs.Wpf;
+
 namespace CalendarJournal
 {
     public class DateRichTextBox :  RichTextBox
@@ -92,6 +94,7 @@ namespace CalendarJournal
 
         private void SelectRootDir()
         {
+            
             var dialog = new VistaFolderBrowserDialog
             {
                 Description = "Please select a folder.",
@@ -106,6 +109,7 @@ namespace CalendarJournal
                 MessageBox.Show("The selected folder was: " + dialog.SelectedPath, "Sample folder browser dialog");
 
             }
+            
         }
 
         private void LoadDocument(DateTime newValue)
