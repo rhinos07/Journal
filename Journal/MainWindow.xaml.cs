@@ -62,21 +62,47 @@ namespace CalendarJournal
 
             DataContext = this;
 
-            if (string.IsNullOrEmpty((string)Properties.Settings.Default["RootPath"]))
+            RootPath = (string)Properties.Settings.Default["RootPath"];
+
+            if (!CheckRootPath(RootPath))
             {
-                SelectRootDir();
+                RootPath = null;
+            }
+
+            if (string.IsNullOrEmpty(RootPath))
+            {
+                SelectRootPath();
+            }
+
+
+            if (string.IsNullOrEmpty(RootPath))
+            {
+                MessageBox.Show("No path to entires");
             }
             else
             {
-                RootPath = (string) Properties.Settings.Default["RootPath"];
-                RegisterNewPath();
+                RegisterNewPath(RootPath);
             }
+
+
+
 
             InitializeComponent();
             Calendar.SelectedDate = DateTime.Now;
         }
 
-        private void SelectRootDir()
+        private bool CheckRootPath(string path)
+        {
+            if (string.IsNullOrEmpty(path))
+                return false;
+
+            if (!Directory.Exists(path))    
+                return false;
+
+            return true;    
+        }
+
+        private void SelectRootPath()
         {
             
             var dialog = new VistaFolderBrowserDialog
@@ -93,26 +119,32 @@ namespace CalendarJournal
                 RootPath = dialog.SelectedPath;
                 //MessageBox.Show("The selected folder was: " + dialog.SelectedPath, "Sample folder browser dialog");
             }
-
-            RegisterNewPath();
-            
         }
 
-        private void RegisterNewPath()
+        private void RegisterNewPath(string rootPath)
         {
-            Properties.Settings.Default["RootPath"] = RootPath;
-            Properties.Settings.Default.Save(); 
+            try
+            {
 
-            _watcher.Path = RootPath;
-            _watcher.NotifyFilter = NotifyFilters.LastAccess | NotifyFilters.LastWrite | NotifyFilters.FileName | NotifyFilters.DirectoryName;
+                Properties.Settings.Default["RootPath"] = RootPath;
+                Properties.Settings.Default.Save(); 
 
-            _watcher.Changed += OnPathEntriesChanged;
-            _watcher.Created += OnPathEntriesChanged;
-            _watcher.Deleted += OnPathEntriesChanged;
+                _watcher.Path = RootPath;
+                _watcher.NotifyFilter = NotifyFilters.LastAccess | NotifyFilters.LastWrite | NotifyFilters.FileName | NotifyFilters.DirectoryName;
 
-            _watcher.EnableRaisingEvents = true;
+                _watcher.Changed += OnPathEntriesChanged;
+                _watcher.Created += OnPathEntriesChanged;
+                _watcher.Deleted += OnPathEntriesChanged;
 
-            UpdateEntriesMade();
+                _watcher.EnableRaisingEvents = true;
+
+                UpdateEntriesMade();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.ToString());
+            }
+
         }
 
         private void OnPathEntriesChanged(object sender, FileSystemEventArgs e)
@@ -207,9 +239,6 @@ namespace CalendarJournal
             if (contents.Contains("handstand"))
                 text = text + "Hs ";
 
-            if (contents.Contains("trifecta"))
-                text = text + "Tri ";
-
             if (contents.Contains("joggen"))
                 text = text + "Jo ";
 
@@ -218,13 +247,27 @@ namespace CalendarJournal
 
             if (contents.Contains("mtb"))
                 text = text + "Ff ";
-            
+
+            if (contents.Contains("yoga"))
+                text = text + "Yo ";
+
+            if (contents.Contains("trifecta"))
+                text = text + "Tri ";
+
+            if (contents.Contains("krank"))
+                text = text + "Krank ";
+
             return text;
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            SelectRootDir();
+            SelectRootPath();
+
+            if (!string.IsNullOrEmpty(RootPath))
+            {
+                RegisterNewPath(RootPath);
+            }
         }
 
         public ICommand SaveCommand

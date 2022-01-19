@@ -38,4 +38,7 @@
             <TextBlock Margin="2" HorizontalAlignment="Right" >  <Hyperlink Command="{Binding OpenHyperlinkCommand}">http://www.joesgoals.com</Hyperlink></TextBlock>
         </StackPanel>
     </Grid>
+    <Window.InputBindings>
+        <KeyBinding Command="{Binding SaveCommand}"  Modifiers="Control"  Key="S"/>
+    </Window.InputBindings>
 </Window>
