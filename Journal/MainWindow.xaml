@@ -21,17 +21,17 @@
                                Date="{Binding SelectedDate, ElementName=Calendar, UpdateSourceTrigger=PropertyChanged}" VerticalScrollBarVisibility="Visible"/>
 
         <StackPanel Grid.Row="2" HorizontalAlignment="Left" VerticalAlignment="Bottom" Orientation="Horizontal">
-            <Button Margin="2" Click="Button_Click" >
+            <Button Margin="2" Click="Button_Configuration_Click" ToolTip="Configuration">
                 <Image Height="15" Width="15"  Source="glyphicons-440-wrench.png"></Image>
             </Button>
-            <Button Margin="2" Command="{Binding SaveCommand}">
+            <Button Margin="2" Command="{Binding SaveCommand}" ToolTip="Save this entry">
                 <Image Height="15"  Width="15" Source="glyphicons-207-ok-2.png"></Image>
             </Button>
-            <Button Margin="2" Command="{Binding UndoCommand}">
+            <Button Margin="2" Command="{Binding UndoCommand}" ToolTip="Undo changes">
                 <Image Height="15"  Width="15" Source="glyphicons-436-undo.png"></Image>
             </Button>
-            <Button Margin="2" Command="{Binding DeleteCommand}">
-                <Image Height="15" Width="15" Source="glyphicons-208-remove-2.png"></Image></Button>
+            <Button Margin="2" Command="{Binding DeleteCommand}" ToolTip="Remove this entry">
+                <Image Height="15" Width="15" Source="glyphicons-208-remove-2.png" ToolTip="Remove this entry"></Image></Button>
         </StackPanel>
 
         <StackPanel Grid.Row="2" Margin="0,0,20,0" HorizontalAlignment="Right" VerticalAlignment="Bottom" Orientation="Horizontal">
@@ -40,5 +40,6 @@
     </Grid>
     <Window.InputBindings>
         <KeyBinding Command="{Binding SaveCommand}"  Modifiers="Control"  Key="S"/>
+        <KeyBinding Command="{Binding EditCommand}"  Modifiers="Control"  Key="E"/>
     </Window.InputBindings>
 </Window>

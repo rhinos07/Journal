@@ -5,8 +5,6 @@ using System.Windows.Controls;
 using System.Windows.Documents;
 using Ookii.Dialogs.Wpf;
 
-//using Ookii.Dialogs.Wpf;
-
 namespace CalendarJournal
 {
     public class DateRichTextBox :  RichTextBox
@@ -76,6 +74,10 @@ namespace CalendarJournal
 
             _originalText = DocumentToString(Document);
             _originalDate = newValue;
+
+            this.CaretPosition = this.CaretPosition.DocumentEnd;
+            //this.ScrollToEnd();
+            this.Focus();
         }
 
         private void DoSaveEntry(DateTime originalDate, string text)

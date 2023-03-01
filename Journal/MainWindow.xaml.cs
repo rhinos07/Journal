@@ -3,6 +3,7 @@ using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Globalization;
 using System.IO;
+using System.Threading;
 using System.Windows;
 using System.Windows.Input;
 using System.Windows.Threading;
@@ -56,6 +57,7 @@ namespace CalendarJournal
         public MainWindow()
         {
             SaveCommand = new CustomCommand(SaveExecute);
+            EditCommand = new CustomCommand(EditExecute);
             UndoCommand = new CustomCommand(UndoExecute);
             DeleteCommand = new CustomCommand(DeleteExecute);
             OpenHyperlinkCommand = new CustomCommand(OpenHyperlinkExecute);
@@ -147,8 +149,17 @@ namespace CalendarJournal
 
         }
 
+        private DateTime lastRefresh = DateTime.MinValue;
+
         private void OnPathEntriesChanged(object sender, FileSystemEventArgs e)
         {
+            if (lastRefresh > DateTime.Now.Subtract(TimeSpan.FromSeconds(10)))
+            { 
+                return;
+            }
+
+            lastRefresh = DateTime.Now;
+
             Application.Current.Dispatcher.BeginInvoke(
                 DispatcherPriority.Background,new Action(UpdateEntriesMade));
         }
@@ -242,7 +253,7 @@ namespace CalendarJournal
             if (contents.Contains("joggen"))
                 text = text + "Jo ";
 
-            if (contents.Contains("fahrradfahren"))
+            if (contents.Contains("radfahren"))
                 text = text + "Ff ";
 
             if (contents.Contains("mtb"))
@@ -260,7 +271,7 @@ namespace CalendarJournal
             return text;
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
+        private void Button_Configuration_Click(object sender, RoutedEventArgs e)
         {
             SelectRootPath();
 
@@ -276,10 +287,20 @@ namespace CalendarJournal
             internal set;
         }
 
-
         public void SaveExecute()
         {
             DateEntryTextBox.SaveEntry();
+        }
+
+        public ICommand EditCommand
+        {
+            get;
+            internal set;
+        }
+
+        public void EditExecute()
+        {
+            DateEntryTextBox.Focus();
         }
 
         public ICommand UndoCommand
